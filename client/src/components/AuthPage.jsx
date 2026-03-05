@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './AuthPage.css';
 
 export default function AuthPage({ onAuth }) {
-  const [mode, setMode] = useState('login'); // 'login' | 'register'
+  const [mode, setMode] = useState('login'); // login only - registration disabled
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -120,21 +120,7 @@ export default function AuthPage({ onAuth }) {
         </form>
 
         <div className="auth-card__footer">
-          {mode === 'login' ? (
-            <p>
-              Don't have an account?{' '}
-              <button className="auth-link" onClick={() => { setMode('register'); setError(''); }}>
-                Sign up
-              </button>
-            </p>
-          ) : (
-            <p>
-              Already have an account?{' '}
-              <button className="auth-link" onClick={() => { setMode('login'); setError(''); }}>
-                Sign in
-              </button>
-            </p>
-          )}
+          <p style={{ opacity: 0.4 }}>Contact your administrator for access.</p>
         </div>
       </div>
     </div>

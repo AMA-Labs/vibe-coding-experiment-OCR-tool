@@ -7,54 +7,10 @@ const router = express.Router();
 
 /**
  * POST /api/auth/register
+ * DISABLED - Registration is closed. Use the seed script to create admin accounts.
  */
-router.post('/auth/register', async (req, res) => {
-  try {
-    const { email, password, name } = req.body;
-
-    if (!email || !password) {
-      return res.status(400).json({ error: 'Email and password are required' });
-    }
-
-    if (password.length < 6) {
-      return res.status(400).json({ error: 'Password must be at least 6 characters' });
-    }
-
-    // Check if email already exists
-    const existing = db.prepare('SELECT id FROM users WHERE email = ?').get(email.toLowerCase());
-    if (existing) {
-      return res.status(409).json({ error: 'An account with this email already exists' });
-    }
-
-    // Hash password
-    const salt = await bcrypt.genSalt(12);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
-    // Insert user
-    const result = db.prepare(
-      'INSERT INTO users (email, password, name) VALUES (?, ?, ?)'
-    ).run(email.toLowerCase(), hashedPassword, name || null);
-
-    const user = {
-      id: result.lastInsertRowid,
-      email: email.toLowerCase(),
-      name: name || null,
-    };
-
-    const token = generateToken(user);
-
-    res.cookie('token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-    });
-
-    res.json({ user, token });
-  } catch (err) {
-    console.error('Register error:', err);
-    res.status(500).json({ error: 'Registration failed' });
-  }
+router.post('/auth/register', (req, res) => {
+  return res.status(403).json({ error: 'Registration is currently disabled' });
 });
 
 /**
