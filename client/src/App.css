@@ -1,0 +1,119 @@
+.app {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.app--loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app__spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(255, 255, 255, 0.08);
+  border-top-color: #58a6ff;
+  border-radius: 50%;
+  animation: appSpin 0.8s linear infinite;
+}
+
+@keyframes appSpin {
+  to { transform: rotate(360deg); }
+}
+
+.api-key-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #d4880f;
+  color: #1a1a1a;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.api-key-banner code {
+  background: rgba(0, 0, 0, 0.15);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+/* Top bar */
+.app__topbar {
+  height: 44px;
+  background: rgba(22, 24, 34, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  flex-shrink: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.app__topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app__topbar-logo {
+  font-size: 18px;
+  color: #58a6ff;
+}
+
+.app__topbar-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.app__topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.app__topbar-user {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.app__topbar-logout {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+.app__topbar-logout:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

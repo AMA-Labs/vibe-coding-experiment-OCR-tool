@@ -1,0 +1,134 @@
+.canvas {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: auto;
+  background: #0f1117;
+}
+
+.canvas__grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Empty state */
+.canvas__empty {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.canvas__empty-icon {
+  color: rgba(255, 255, 255, 0.12);
+  margin-bottom: 20px;
+}
+
+.canvas__empty-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.25);
+  margin-bottom: 12px;
+}
+
+.canvas__empty-subtitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.15);
+  line-height: 1.6;
+}
+
+.canvas__empty-limits {
+  margin-top: 16px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Drag over state */
+.canvas--drag-over {
+  background: #0f1117;
+}
+
+.canvas__drop-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(88, 166, 255, 0.04);
+  border: 2px dashed rgba(88, 166, 255, 0.3);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.canvas__drop-overlay-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  color: rgba(88, 166, 255, 0.6);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Connecting mode */
+.canvas--connecting {
+  cursor: crosshair;
+}
+
+.canvas__connecting-banner {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: #1e2030;
+  border: 1px solid rgba(187, 128, 255, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  font-size: 13px;
+  color: rgba(187, 128, 255, 0.8);
+  font-weight: 500;
+}
+
+.canvas__connecting-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #bb80ff;
+  animation: connectPulse 1s ease-in-out infinite;
+}
+
+@keyframes connectPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+.canvas__connecting-banner button {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+.canvas__connecting-banner button:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.8);
+}
